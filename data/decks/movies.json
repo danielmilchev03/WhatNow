@@ -1,0 +1,290 @@
+[
+  {
+    "id": "inception",
+    "title": "Inception",
+    "subtitle": "2010 · Sci-Fi",
+    "description": "A thief who steals secrets through dreams is asked to plant an idea instead.",
+    "emoji": "🌀",
+    "tags": ["sci-fi", "action", "thriller"],
+    "meta": { "year": 2010 }
+  },
+  {
+    "id": "the-shawshank-redemption",
+    "title": "The Shawshank Redemption",
+    "subtitle": "1994 · Drama",
+    "description": "Two prisoners build a friendship over decades, and one never stops hoping.",
+    "emoji": "🔨",
+    "tags": ["drama"],
+    "meta": { "year": 1994 }
+  },
+  {
+    "id": "the-dark-knight",
+    "title": "The Dark Knight",
+    "subtitle": "2008 · Action",
+    "description": "Batman faces the Joker, who wants to watch Gotham burn.",
+    "emoji": "🦇",
+    "tags": ["action", "crime", "drama"],
+    "meta": { "year": 2008 }
+  },
+  {
+    "id": "pulp-fiction",
+    "title": "Pulp Fiction",
+    "subtitle": "1994 · Crime",
+    "description": "Hitmen, a boxer and a gangster's wife cross paths in Los Angeles.",
+    "emoji": "💼",
+    "tags": ["crime", "drama"],
+    "meta": { "year": 1994 }
+  },
+  {
+    "id": "forrest-gump",
+    "title": "Forrest Gump",
+    "subtitle": "1994 · Drama",
+    "description": "A kind man drifts through decades of American history.",
+    "emoji": "🏃",
+    "tags": ["drama", "romance", "comedy"],
+    "meta": { "year": 1994 }
+  },
+  {
+    "id": "the-matrix",
+    "title": "The Matrix",
+    "subtitle": "1999 · Sci-Fi",
+    "description": "A hacker learns the world he knows is a simulation.",
+    "emoji": "💊",
+    "tags": ["sci-fi", "action"],
+    "meta": { "year": 1999 }
+  },
+  {
+    "id": "interstellar",
+    "title": "Interstellar",
+    "subtitle": "2014 · Sci-Fi",
+    "description": "Astronauts travel through a wormhole to find humanity a new home.",
+    "emoji": "🪐",
+    "tags": ["sci-fi", "drama", "adventure"],
+    "meta": { "year": 2014 }
+  },
+  {
+    "id": "spirited-away",
+    "title": "Spirited Away",
+    "subtitle": "2001 · Animation",
+    "description": "A girl must work in a bathhouse for spirits to save her parents.",
+    "emoji": "🐉",
+    "tags": ["animation", "fantasy", "family"],
+    "meta": { "year": 2001 }
+  },
+  {
+    "id": "parasite",
+    "title": "Parasite",
+    "subtitle": "2019 · Thriller",
+    "description": "A poor family schemes its way into a wealthy household.",
+    "emoji": "🪨",
+    "tags": ["thriller", "drama", "comedy"],
+    "meta": { "year": 2019 }
+  },
+  {
+    "id": "the-lion-king",
+    "title": "The Lion King",
+    "subtitle": "1994 · Animation",
+    "description": "A lion cub flees his kingdom and must return to claim it.",
+    "emoji": "🦁",
+    "tags": ["animation", "family", "drama"],
+    "meta": { "year": 1994 }
+  },
+  {
+    "id": "back-to-the-future",
+    "title": "Back to the Future",
+    "subtitle": "1985 · Sci-Fi",
+    "description": "A teenager travels to 1955 and has to make his parents fall in love.",
+    "emoji": "⏰",
+    "tags": ["sci-fi", "comedy", "adventure"],
+    "meta": { "year": 1985 }
+  },
+  {
+    "id": "gladiator",
+    "title": "Gladiator",
+    "subtitle": "2000 · Action",
+    "description": "A betrayed Roman general fights his way back as a gladiator.",
+    "emoji": "⚔️",
+    "tags": ["action", "drama", "adventure"],
+    "meta": { "year": 2000 }
+  },
+  {
+    "id": "titanic",
+    "title": "Titanic",
+    "subtitle": "1997 · Romance",
+    "description": "A love story aboard the ship that was supposed to be unsinkable.",
+    "emoji": "🚢",
+    "tags": ["romance", "drama"],
+    "meta": { "year": 1997 }
+  },
+  {
+    "id": "jurassic-park",
+    "title": "Jurassic Park",
+    "subtitle": "1993 · Adventure",
+    "description": "A theme park with living dinosaurs. What could go wrong?",
+    "emoji": "🦖",
+    "tags": ["adventure", "sci-fi", "family"],
+    "meta": { "year": 1993 }
+  },
+  {
+    "id": "the-godfather",
+    "title": "The Godfather",
+    "subtitle": "1972 · Crime",
+    "description": "The aging head of a crime family hands control to his reluctant son.",
+    "emoji": "🌹",
+    "tags": ["crime", "drama"],
+    "meta": { "year": 1972 }
+  },
+  {
+    "id": "toy-story",
+    "title": "Toy Story",
+    "subtitle": "1995 · Animation",
+    "description": "A cowboy doll feels threatened by a shiny new space ranger toy.",
+    "emoji": "🤠",
+    "tags": ["animation", "family", "comedy"],
+    "meta": { "year": 1995 }
+  },
+  {
+    "id": "la-la-land",
+    "title": "La La Land",
+    "subtitle": "2016 · Romance",
+    "description": "A jazz pianist and an actress chase their dreams in Los Angeles.",
+    "emoji": "🎹",
+    "tags": ["romance", "musical", "drama"],
+    "meta": { "year": 2016 }
+  },
+  {
+    "id": "the-grand-budapest-hotel",
+    "title": "The Grand Budapest Hotel",
+    "subtitle": "2014 · Comedy",
+    "description": "A legendary concierge and his lobby boy get caught up in a theft.",
+    "emoji": "🏨",
+    "tags": ["comedy", "adventure"],
+    "meta": { "year": 2014 }
+  },
+  {
+    "id": "mad-max-fury-road",
+    "title": "Mad Max: Fury Road",
+    "subtitle": "2015 · Action",
+    "description": "A desert chase across a post-apocalyptic wasteland.",
+    "emoji": "🔥",
+    "tags": ["action", "adventure", "sci-fi"],
+    "meta": { "year": 2015 }
+  },
+  {
+    "id": "get-out",
+    "title": "Get Out",
+    "subtitle": "2017 · Horror",
+    "description": "A weekend with his girlfriend's family turns very strange.",
+    "emoji": "☕",
+    "tags": ["horror", "thriller"],
+    "meta": { "year": 2017 }
+  },
+  {
+    "id": "the-silence-of-the-lambs",
+    "title": "The Silence of the Lambs",
+    "subtitle": "1991 · Thriller",
+    "description": "An FBI trainee asks an imprisoned killer for help catching another.",
+    "emoji": "🦋",
+    "tags": ["thriller", "crime", "horror"],
+    "meta": { "year": 1991 }
+  },
+  {
+    "id": "finding-nemo",
+    "title": "Finding Nemo",
+    "subtitle": "2003 · Animation",
+    "description": "A nervous clownfish crosses the ocean to find his son.",
+    "emoji": "🐠",
+    "tags": ["animation", "family", "adventure"],
+    "meta": { "year": 2003 }
+  },
+  {
+    "id": "the-social-network",
+    "title": "The Social Network",
+    "subtitle": "2010 · Drama",
+    "description": "How a college project became Facebook, and the lawsuits that followed.",
+    "emoji": "💻",
+    "tags": ["drama"],
+    "meta": { "year": 2010 }
+  },
+  {
+    "id": "amelie",
+    "title": "Amélie",
+    "subtitle": "2001 · Romance",
+    "description": "A shy waitress in Paris secretly improves the lives of those around her.",
+    "emoji": "🍮",
+    "tags": ["romance", "comedy"],
+    "meta": { "year": 2001 }
+  },
+  {
+    "id": "the-shining",
+    "title": "The Shining",
+    "subtitle": "1980 · Horror",
+    "description": "A writer becomes caretaker of an isolated hotel for the winter.",
+    "emoji": "🪓",
+    "tags": ["horror", "thriller"],
+    "meta": { "year": 1980 }
+  },
+  {
+    "id": "superbad",
+    "title": "Superbad",
+    "subtitle": "2007 · Comedy",
+    "description": "Two best friends try to make their last high-school party count.",
+    "emoji": "🎉",
+    "tags": ["comedy"],
+    "meta": { "year": 2007 }
+  },
+  {
+    "id": "dune",
+    "title": "Dune",
+    "subtitle": "2021 · Sci-Fi",
+    "description": "A noble family takes control of the most valuable planet in the universe.",
+    "emoji": "🏜️",
+    "tags": ["sci-fi", "adventure", "drama"],
+    "meta": { "year": 2021 }
+  },
+  {
+    "id": "everything-everywhere-all-at-once",
+    "title": "Everything Everywhere All at Once",
+    "subtitle": "2022 · Sci-Fi",
+    "description": "A laundromat owner jumps across universes to save her family.",
+    "emoji": "🥯",
+    "tags": ["sci-fi", "comedy", "action"],
+    "meta": { "year": 2022 }
+  },
+  {
+    "id": "the-princess-bride",
+    "title": "The Princess Bride",
+    "subtitle": "1987 · Fantasy",
+    "description": "A farm boy turned pirate sets out to rescue his true love.",
+    "emoji": "👸",
+    "tags": ["fantasy", "romance", "comedy", "adventure"],
+    "meta": { "year": 1987 }
+  },
+  {
+    "id": "whiplash",
+    "title": "Whiplash",
+    "subtitle": "2014 · Drama",
+    "description": "A young drummer and a ruthless teacher push each other to the edge.",
+    "emoji": "🥁",
+    "tags": ["drama", "musical"],
+    "meta": { "year": 2014 }
+  },
+  {
+    "id": "up",
+    "title": "Up",
+    "subtitle": "2009 · Animation",
+    "description": "An old man ties balloons to his house and flies to South America.",
+    "emoji": "🎈",
+    "tags": ["animation", "family", "adventure"],
+    "meta": { "year": 2009 }
+  },
+  {
+    "id": "knives-out",
+    "title": "Knives Out",
+    "subtitle": "2019 · Mystery",
+    "description": "A detective investigates the death of a wealthy crime novelist.",
+    "emoji": "🔪",
+    "tags": ["mystery", "comedy", "crime"],
+    "meta": { "year": 2019 }
+  }
+]

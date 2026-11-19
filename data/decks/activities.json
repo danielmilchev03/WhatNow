@@ -1,0 +1,170 @@
+[
+  {
+    "id": "cinema",
+    "title": "Go to the cinema",
+    "description": "Catch whatever's on the big screen tonight.",
+    "emoji": "🍿",
+    "tags": ["indoor", "evening"],
+    "meta": { "placeQuery": "amenity=cinema" }
+  },
+  {
+    "id": "dinner-out",
+    "title": "Dinner out",
+    "description": "Somewhere new, or the old favorite.",
+    "emoji": "🍽️",
+    "tags": ["indoor", "food"],
+    "meta": { "placeQuery": "amenity=restaurant" }
+  },
+  {
+    "id": "walk",
+    "title": "Go for a walk",
+    "description": "Fresh air, no plan, just talk.",
+    "emoji": "🚶",
+    "tags": ["outdoor", "free", "active"],
+    "meta": { "placeQuery": "leisure=park" }
+  },
+  {
+    "id": "bowling",
+    "title": "Bowling",
+    "description": "Bad shoes, good fun.",
+    "emoji": "🎳",
+    "tags": ["indoor", "active"],
+    "meta": { "placeQuery": "leisure=bowling_alley" }
+  },
+  {
+    "id": "board-games",
+    "title": "Board games",
+    "description": "Dust off a box and get competitive.",
+    "emoji": "🎲",
+    "tags": ["indoor", "home", "cheap"]
+  },
+  {
+    "id": "bike-ride",
+    "title": "Bike ride",
+    "description": "Pick a direction and pedal.",
+    "emoji": "🚲",
+    "tags": ["outdoor", "active", "cheap"]
+  },
+  {
+    "id": "movie-night",
+    "title": "Movie night at home",
+    "description": "Blankets, snacks and a film.",
+    "emoji": "🛋️",
+    "tags": ["indoor", "home", "cheap"]
+  },
+  {
+    "id": "cook-together",
+    "title": "Cook something together",
+    "description": "Try a recipe none of you has made before.",
+    "emoji": "👩‍🍳",
+    "tags": ["indoor", "home", "food", "cheap"]
+  },
+  {
+    "id": "karaoke",
+    "title": "Karaoke",
+    "description": "Everyone sings, nobody is judged. Much.",
+    "emoji": "🎤",
+    "tags": ["indoor", "evening"],
+    "meta": { "placeQuery": "amenity=karaoke_box" }
+  },
+  {
+    "id": "picnic",
+    "title": "Picnic",
+    "description": "Pack some food and find a patch of grass.",
+    "emoji": "🧺",
+    "tags": ["outdoor", "food", "cheap"],
+    "meta": { "placeQuery": "leisure=park" }
+  },
+  {
+    "id": "escape-room",
+    "title": "Escape room",
+    "description": "Sixty minutes to get out of a locked room.",
+    "emoji": "🔐",
+    "tags": ["indoor", "active"],
+    "meta": { "placeQuery": "leisure=escape_game" }
+  },
+  {
+    "id": "museum",
+    "title": "Visit a museum",
+    "description": "See something you've never seen before.",
+    "emoji": "🏛️",
+    "tags": ["indoor", "culture"],
+    "meta": { "placeQuery": "tourism=museum" }
+  },
+  {
+    "id": "bar",
+    "title": "Drinks at a bar",
+    "description": "A couple of drinks somewhere cozy.",
+    "emoji": "🍻",
+    "tags": ["indoor", "evening"],
+    "meta": { "placeQuery": "amenity=bar" }
+  },
+  {
+    "id": "hike",
+    "title": "Short hike",
+    "description": "Find a trail and a view.",
+    "emoji": "🥾",
+    "tags": ["outdoor", "active", "free"]
+  },
+  {
+    "id": "video-games",
+    "title": "Video games",
+    "description": "Co-op or versus, your call.",
+    "emoji": "🎮",
+    "tags": ["indoor", "home", "cheap"]
+  },
+  {
+    "id": "concert",
+    "title": "Live music",
+    "description": "Find a gig or a bar with a band tonight.",
+    "emoji": "🎸",
+    "tags": ["indoor", "evening", "culture"],
+    "meta": { "placeQuery": "amenity=music_venue" }
+  },
+  {
+    "id": "stargazing",
+    "title": "Stargazing",
+    "description": "Drive out of the city lights and look up.",
+    "emoji": "🌌",
+    "tags": ["outdoor", "evening", "free"]
+  },
+  {
+    "id": "coffee",
+    "title": "Coffee and cake",
+    "description": "Slow afternoon at a café.",
+    "emoji": "☕",
+    "tags": ["indoor", "food", "cheap"],
+    "meta": { "placeQuery": "amenity=cafe" }
+  },
+  {
+    "id": "swimming",
+    "title": "Go swimming",
+    "description": "Pool, lake or sea, whatever is close.",
+    "emoji": "🏊",
+    "tags": ["active", "outdoor"],
+    "meta": { "placeQuery": "leisure=swimming_pool" }
+  },
+  {
+    "id": "quiz-night",
+    "title": "Pub quiz",
+    "description": "Test your useless knowledge as a team.",
+    "emoji": "🧠",
+    "tags": ["indoor", "evening"],
+    "meta": { "placeQuery": "amenity=pub" }
+  },
+  {
+    "id": "puzzle",
+    "title": "Jigsaw puzzle",
+    "description": "A thousand pieces and a playlist.",
+    "emoji": "🧩",
+    "tags": ["indoor", "home", "cheap"]
+  },
+  {
+    "id": "climbing",
+    "title": "Indoor climbing",
+    "description": "Bouldering for beginners is easier than it looks.",
+    "emoji": "🧗",
+    "tags": ["indoor", "active"],
+    "meta": { "placeQuery": "sport=climbing" }
+  }
+]
