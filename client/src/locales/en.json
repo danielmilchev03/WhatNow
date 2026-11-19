@@ -1,0 +1,63 @@
+{
+  "app": {
+    "name": "WhatNow?"
+  },
+  "common": {
+    "dismiss": "Dismiss",
+    "leave": "Leave room"
+  },
+  "decks": {
+    "movies": "🎬 What to watch",
+    "activities": "🌆 What to do",
+    "places": "📍 Where to go",
+    "food": "🍕 What to eat"
+  },
+  "home": {
+    "nameLabel": "Your name",
+    "namePlaceholder": "e.g. Ana",
+    "createTitle": "Start a new room",
+    "deckLabel": "Pick a deck",
+    "createButton": "Create room",
+    "joinTitle": "Join a friend",
+    "codeLabel": "Room code",
+    "codePlaceholder": "CODE",
+    "joinButton": "Join with code"
+  },
+  "lobby": {
+    "codeLabel": "Room code",
+    "players_one": "{{count}} player",
+    "players_other": "{{count}} players",
+    "host": "host",
+    "you": "you",
+    "startButton": "Start",
+    "waitingForHost": "Waiting for the host to start…"
+  },
+  "swipe": {
+    "progress": "{{current}} / {{total}}",
+    "like": "Like",
+    "nope": "Nope"
+  },
+  "match": {
+    "title": "It's a match!"
+  },
+  "results": {
+    "title": "Your matches",
+    "waitingForOthers": "You're done! Waiting for the others to finish…",
+    "noMatches": "No matches yet.",
+    "backHome": "Back to home"
+  },
+  "errors": {
+    "INVALID_PAYLOAD": "Something about that request wasn't right. Please try again.",
+    "ROOM_NOT_FOUND": "There's no room with that code.",
+    "ROOM_ALREADY_STARTED": "That room has already started.",
+    "NOT_IN_ROOM": "You're not in a room.",
+    "NOT_HOST": "Only the host can do that.",
+    "NOT_SWIPING": "The room isn't swiping right now.",
+    "NAME_TAKEN": "Someone in that room already has that name.",
+    "UNKNOWN_CARD": "That card isn't in this room.",
+    "ALREADY_VOTED": "You already voted on that card.",
+    "DECK_UNAVAILABLE": "That deck isn't available right now.",
+    "NO_CARDS": "No cards matched those filters.",
+    "INTERNAL": "Something went wrong on our side. Please try again."
+  }
+}
