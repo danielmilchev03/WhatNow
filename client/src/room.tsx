@@ -5,6 +5,8 @@ import { socket } from './socket';
 interface RoomContextValue {
   room: PublicRoom | null;
   error: ErrorCode | null;
+  /** Counts every error event, so a repeated identical code is still observable as a change. */
+  errorSeq: number;
   /** Card id of the most recent match, until dismissed. */
   lastMatch: string | null;
   createRoom: (deckId: DeckId, name: string) => void;
@@ -22,6 +24,7 @@ const RoomContext = createContext<RoomContextValue | null>(null);
 export function RoomProvider({ children }: { children: ReactNode }) {
   const [room, setRoom] = useState<PublicRoom | null>(null);
   const [error, setError] = useState<ErrorCode | null>(null);
+  const [errorSeq, setErrorSeq] = useState(0);
   const [lastMatch, setLastMatch] = useState<string | null>(null);
 
   useEffect(() => {
@@ -30,7 +33,10 @@ export function RoomProvider({ children }: { children: ReactNode }) {
       setError(null);
     };
     const onMatch = ({ cardId }: { cardId: string }) => setLastMatch(cardId);
-    const onError = ({ code }: { code: ErrorCode }) => setError(code);
+    const onError = ({ code }: { code: ErrorCode }) => {
+      setError(code);
+      setErrorSeq((n) => n + 1);
+    };
 
     socket.on('room:state', onState);
     socket.on('match', onMatch);
@@ -46,6 +52,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
     () => ({
       room,
       error,
+      errorSeq,
       lastMatch,
       createRoom: (deckId, name) => socket.emit('room:create', { deckId, name }),
       joinRoom: (code, name) => socket.emit('room:join', { code, name }),
@@ -60,7 +67,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
         setLastMatch(null);
       },
     }),
-    [room, error, lastMatch],
+    [room, error, errorSeq, lastMatch],
   );
 
   return <RoomContext.Provider value={value}>{children}</RoomContext.Provider>;
