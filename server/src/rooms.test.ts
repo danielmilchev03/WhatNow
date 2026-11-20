@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { ROOM_CODE_ALPHABET, type Card, type Room } from '@whatnow/shared';
 import {
   castVote,
+  computeAlmostMatches,
   computeMatches,
   createRoom,
   generateRoomCode,
@@ -204,6 +205,62 @@ describe('computeMatches / isFinished', () => {
   });
 });
 
+describe('computeAlmostMatches', () => {
+  function fourPlayers(votes: Room['votes']): Room {
+    const base = swiping();
+    const extra = ['p3', 'p4'].map((id) => ({ id, name: id, isHost: false }));
+    return {
+      ...base,
+      players: [...base.players, ...extra],
+      cards: [card('a'), card('b'), card('c'), card('d')],
+      votes,
+    };
+  }
+
+  it('includes cards liked by at least half of the players, sorted by likes', () => {
+    const room = fourPlayers({
+      a: { p1: true, p2: true, p3: false, p4: false },
+      b: { p1: true, p2: true, p3: true, p4: false },
+      c: { p1: true, p2: false, p3: false, p4: false },
+      d: { p1: true, p2: true, p3: true, p4: true },
+    });
+    expect(computeAlmostMatches(room)).toEqual([
+      { cardId: 'b', likes: 3 },
+      { cardId: 'a', likes: 2 },
+    ]);
+  });
+
+  it('excludes full matches and keeps deck order for equal likes', () => {
+    const room = fourPlayers({
+      a: { p1: true, p2: true, p3: true, p4: true },
+      b: { p1: false, p2: true, p3: true, p4: false },
+      c: { p1: true, p2: false, p3: false, p4: true },
+    });
+    expect(computeAlmostMatches(room).map((m) => m.cardId)).toEqual(['b', 'c']);
+  });
+
+  it('treats exactly 50% as almost, but not less', () => {
+    const room = fourPlayers({
+      a: { p1: true, p2: true },
+      b: { p1: true },
+    });
+    expect(computeAlmostMatches(room).map((m) => m.cardId)).toEqual(['a']);
+  });
+
+  it('counts only current players and ignores cards nobody liked', () => {
+    const room: Room = {
+      ...swiping(),
+      votes: { a: { p1: true, p2: false, gone: true }, b: { p1: false, p2: false } },
+    };
+    expect(computeAlmostMatches(room)).toEqual([{ cardId: 'a', likes: 1 }]);
+  });
+
+  it('is empty when there are no votes or no players', () => {
+    expect(computeAlmostMatches(swiping())).toEqual([]);
+    expect(computeAlmostMatches({ ...swiping(), players: [] })).toEqual([]);
+  });
+});
+
 describe('toPublicRoom', () => {
   it("hides other players' votes and exposes only the viewer's", () => {
     let room = swiping();
@@ -216,5 +273,19 @@ describe('toPublicRoom', () => {
     expect(view.myVotes).toEqual({ a: true });
     expect(view).not.toHaveProperty('votes');
     expect(JSON.stringify(view)).not.toContain('p2":');
+  });
+
+  it('reveals almost matches only once the room is done', () => {
+    let room = swiping();
+    room = vote(room, 'p1', 'a', true);
+    room = vote(room, 'p2', 'a', false);
+    expect(toPublicRoom(room, 'p1').almostMatches).toEqual([]);
+
+    for (const id of ['b', 'c']) {
+      room = vote(room, 'p1', id, false);
+      room = vote(room, 'p2', id, false);
+    }
+    expect(room.status).toBe('done');
+    expect(toPublicRoom(room, 'p2').almostMatches).toEqual([{ cardId: 'a', likes: 1 }]);
   });
 });

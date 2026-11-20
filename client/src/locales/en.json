@@ -44,6 +44,8 @@
     "title": "Your matches",
     "waitingForOthers": "You're done! Waiting for the others to finish…",
     "noMatches": "No matches yet.",
+    "almostTitle": "Almost matches",
+    "almostLikes": "{{likes}} of {{total}} liked this",
     "backHome": "Back to home"
   },
   "errors": {

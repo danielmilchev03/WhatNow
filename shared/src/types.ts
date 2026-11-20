@@ -72,6 +72,12 @@ export interface Room {
   matches: string[];
 }
 
+/** A card liked by at least half of the players, but not by everyone. */
+export interface AlmostMatch {
+  cardId: string;
+  likes: number;
+}
+
 /**
  * The view of a room sent to one player. Other players' votes stay hidden;
  * only the viewer's own votes are included.
@@ -84,6 +90,8 @@ export interface PublicRoom {
   status: RoomStatus;
   cards: Card[];
   matches: string[];
+  /** Cards liked by ≥ 50% of players, most likes first. Empty until the room is done. */
+  almostMatches: AlmostMatch[];
   /** Id of the player this view was built for. */
   selfId: string;
   /** cardId -> like? for the viewer only. */
