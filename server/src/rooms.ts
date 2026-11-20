@@ -1,6 +1,7 @@
 import {
   ROOM_CODE_ALPHABET,
   ROOM_CODE_LENGTH,
+  type AlmostMatch,
   type Card,
   type DeckId,
   type DeckOptions,
@@ -99,6 +100,22 @@ export function computeMatches(room: Room): string[] {
   return room.cards.filter((card) => isMatch(room, card.id)).map((card) => card.id);
 }
 
+/**
+ * Cards liked by at least half of the current players but not by all of them,
+ * most likes first (deck order for ties).
+ */
+export function computeAlmostMatches(room: Room): AlmostMatch[] {
+  const total = room.players.length;
+  if (total === 0) return [];
+  return room.cards
+    .map((card) => ({
+      cardId: card.id,
+      likes: room.players.filter((p) => room.votes[card.id]?.[p.id] === true).length,
+    }))
+    .filter(({ likes }) => likes > 0 && likes < total && likes * 2 >= total)
+    .sort((a, b) => b.likes - a.likes);
+}
+
 /** True when every current player has voted on every card. */
 export function isFinished(room: Room): boolean {
   return room.cards.every((card) =>
@@ -127,7 +144,10 @@ export function castVote(
   return ok({ room: next, newMatch });
 }
 
-/** The room as one player is allowed to see it: other players' votes are left out. */
+/**
+ * The room as one player is allowed to see it: other players' votes are left out.
+ * Like counts are aggregates, but they would still reveal votes mid-game, so they wait for 'done'.
+ */
 export function toPublicRoom(room: Room, playerId: string): PublicRoom {
   const myVotes: Record<string, boolean> = {};
   for (const [cardId, cardVotes] of Object.entries(room.votes)) {
@@ -142,6 +162,7 @@ export function toPublicRoom(room: Room, playerId: string): PublicRoom {
     status: room.status,
     cards: room.cards,
     matches: room.matches,
+    almostMatches: room.status === 'done' ? computeAlmostMatches(room) : [],
     selfId: playerId,
     myVotes,
   };
