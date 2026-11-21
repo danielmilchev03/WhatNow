@@ -21,6 +21,10 @@ npm run dev
 Open http://localhost:5173 in two browser tabs, create a room in one, join with the code in the
 other, start and swipe. Phones on the same Wi-Fi can use the "Network" URL that Vite prints.
 
+The lobby shows an invite link with a "Copy link" button and a QR code, and `/r/CODE` opens the join
+screen with that code filled in. The link uses the address the host opened, so for phones open the
+app through the "Network" URL, not `localhost`.
+
 | Command          | What it does                                                    |
 | ---------------- | --------------------------------------------------------------- |
 | `npm run dev`    | Client (Vite, port 5173) and server (port 3001) with hot reload |

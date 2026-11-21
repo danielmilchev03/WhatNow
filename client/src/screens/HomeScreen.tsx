@@ -6,6 +6,7 @@ import {
   type DeckId,
   type DeckInfo,
 } from '@whatnow/shared';
+import { inviteCodeFromPath } from '../invite';
 import { useRoom } from '../room';
 
 export function HomeScreen() {
@@ -14,7 +15,8 @@ export function HomeScreen() {
   const [decks, setDecks] = useState<DeckInfo[]>([]);
   const [deckId, setDeckId] = useState<DeckId>('movies');
   const [name, setName] = useState('');
-  const [code, setCode] = useState('');
+  const [invitedCode] = useState(() => inviteCodeFromPath(window.location.pathname));
+  const [code, setCode] = useState(invitedCode ?? '');
 
   useEffect(() => {
     fetch('/api/decks')
@@ -27,12 +29,20 @@ export function HomeScreen() {
 
   const onCreate = (e: FormEvent) => {
     e.preventDefault();
-    if (trimmedName) createRoom(deckId, trimmedName);
+    if (trimmedName) {
+      createRoom(deckId, trimmedName);
+      // Drop /r/CODE so the stale invite code isn't pre-filled again after leaving the room.
+      history.replaceState(null, '', '/');
+    }
   };
 
   const onJoin = (e: FormEvent) => {
     e.preventDefault();
-    if (trimmedName && code.trim().length === ROOM_CODE_LENGTH) joinRoom(code.trim(), trimmedName);
+    if (trimmedName && code.trim().length === ROOM_CODE_LENGTH) {
+      joinRoom(code.trim(), trimmedName);
+      // Drop /r/CODE so a refresh doesn't prefill a stale code.
+      history.replaceState(null, '', '/');
+    }
   };
 
   return (
@@ -46,6 +56,7 @@ export function HomeScreen() {
           placeholder={t('home.namePlaceholder')}
           onChange={(e) => setName(e.target.value)}
           autoComplete="nickname"
+          autoFocus={invitedCode !== null}
         />
       </label>
 

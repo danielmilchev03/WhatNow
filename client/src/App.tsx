@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { MatchOverlay } from './components/MatchOverlay';
 import { useRoom } from './room';
 import { HomeScreen } from './screens/HomeScreen';
 import { LobbyScreen } from './screens/LobbyScreen';
@@ -32,20 +33,11 @@ function ErrorBanner() {
   );
 }
 
-function MatchBanner() {
-  const { t } = useTranslation();
+function MatchLayer() {
   const { room, lastMatch, dismissMatch } = useRoom();
   const card = room?.cards.find((c) => c.id === lastMatch);
   if (!card) return null;
-  return (
-    <button
-      type="button"
-      onClick={dismissMatch}
-      className="mb-4 w-full rounded-lg bg-rose-600 p-3 text-left font-semibold text-white"
-    >
-      {t('match.title')} {card.emoji} {card.title}
-    </button>
-  );
+  return <MatchOverlay key={card.id} card={card} onDismiss={() => dismissMatch(card.id)} />;
 }
 
 export function App() {
@@ -54,7 +46,7 @@ export function App() {
     <div className="mx-auto flex min-h-dvh max-w-md flex-col p-4">
       <header className="mb-4 text-center text-2xl font-bold">{t('app.name')}</header>
       <ErrorBanner />
-      <MatchBanner />
+      <MatchLayer />
       <main className="flex-1">
         <CurrentScreen />
       </main>

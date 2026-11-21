@@ -30,7 +30,12 @@
     "host": "host",
     "you": "you",
     "startButton": "Start",
-    "waitingForHost": "Waiting for the host to start…"
+    "waitingForHost": "Waiting for the host to start…",
+    "inviteTitle": "Invite friends",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied!",
+    "copyFailed": "Couldn't copy automatically. Copy the link below:",
+    "qrAlt": "QR code that opens this room"
   },
   "swipe": {
     "progress": "{{current}} / {{total}}",
@@ -41,7 +46,8 @@
     "playerDone": "{{name}} finished"
   },
   "match": {
-    "title": "It's a match!"
+    "title": "It's a match!",
+    "dismissHint": "Tap to continue"
   },
   "results": {
     "title": "Your matches",
