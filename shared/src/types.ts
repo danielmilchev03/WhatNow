@@ -78,6 +78,12 @@ export interface AlmostMatch {
   likes: number;
 }
 
+/** How many cards a player has voted on. A count only: never which way they voted. */
+export interface PlayerProgress {
+  playerId: string;
+  voted: number;
+}
+
 /**
  * The view of a room sent to one player. Other players' votes stay hidden;
  * only the viewer's own votes are included.
@@ -92,6 +98,8 @@ export interface PublicRoom {
   matches: string[];
   /** Cards liked by ≥ 50% of players, most likes first. Empty until the room is done. */
   almostMatches: AlmostMatch[];
+  /** One entry per current player, in `players` order. */
+  progress: PlayerProgress[];
   /** Id of the player this view was built for. */
   selfId: string;
   /** cardId -> like? for the viewer only. */

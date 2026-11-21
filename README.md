@@ -40,7 +40,7 @@ npm workspaces monorepo, TypeScript everywhere:
   Socket.IO event maps, so client and server can't drift apart.
 - **`server/`**: Node.js + Express + Socket.IO.
   - `rooms.ts`: all room logic as pure functions (create, join, start, vote, match detection,
-    `toPublicRoom`, which hides other players' votes). No sockets, fully unit-tested.
+    `toPublicRoom`, which hides other players' votes and exposes only progress counts). No sockets, fully unit-tested.
   - `socket.ts`: thin glue that validates payloads with zod, calls `rooms.ts` and broadcasts.
   - `providers/`: a `CardProvider` registry. Each deck has providers in priority order; the first
     available one wins, so API-backed providers can sit in front of the local JSON fallback.

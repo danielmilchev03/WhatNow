@@ -35,7 +35,10 @@
   "swipe": {
     "progress": "{{current}} / {{total}}",
     "like": "Like",
-    "nope": "Nope"
+    "nope": "Nope",
+    "othersProgress": "Everyone's progress",
+    "playerProgress": "{{name}} {{voted}}/{{total}}",
+    "playerDone": "{{name}} finished"
   },
   "match": {
     "title": "It's a match!"

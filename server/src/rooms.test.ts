@@ -4,6 +4,7 @@ import {
   castVote,
   computeAlmostMatches,
   computeMatches,
+  computeProgress,
   createRoom,
   generateRoomCode,
   isFinished,
@@ -287,5 +288,48 @@ describe('toPublicRoom', () => {
     }
     expect(room.status).toBe('done');
     expect(toPublicRoom(room, 'p2').almostMatches).toEqual([{ cardId: 'a', likes: 1 }]);
+  });
+});
+
+describe('computeProgress', () => {
+  it('counts voted cards per player, in players order', () => {
+    let room = swiping();
+    room = vote(room, 'p1', 'a', true);
+    room = vote(room, 'p1', 'b', false);
+    room = vote(room, 'p2', 'a', false);
+    expect(computeProgress(room)).toEqual([
+      { playerId: 'p1', voted: 2 },
+      { playerId: 'p2', voted: 1 },
+    ]);
+  });
+
+  it('has one entry per player for three players, all 0 in the lobby', () => {
+    const room = unwrap(joinRoom(lobby(), { id: 'p3', name: 'Mia' }));
+    expect(computeProgress(room).map((p) => p.playerId)).toEqual(['p1', 'p2', 'p3']);
+    expect(computeProgress(room).every((p) => p.voted === 0)).toBe(true);
+  });
+
+  it('ignores votes on cards that are not in the deck', () => {
+    const room: Room = { ...swiping(), votes: { zzz: { p1: true } } };
+    expect(computeProgress(room)).toEqual([
+      { playerId: 'p1', voted: 0 },
+      { playerId: 'p2', voted: 0 },
+    ]);
+  });
+
+  it('resets to 0 when the room starts', () => {
+    const started = unwrap(startRoom(lobby(), 'p1', CARDS));
+    expect(computeProgress(started).every((p) => p.voted === 0)).toBe(true);
+  });
+
+  it('does not reveal how a player voted', () => {
+    const liked = vote(swiping(), 'p2', 'a', true);
+    const noped = vote(swiping(), 'p2', 'a', false);
+    expect(toPublicRoom(liked, 'p1').progress).toEqual(toPublicRoom(noped, 'p1').progress);
+    expect(toPublicRoom(liked, 'p1').progress).toEqual([
+      { playerId: 'p1', voted: 0 },
+      { playerId: 'p2', voted: 1 },
+    ]);
+    expect(toPublicRoom(liked, 'p1').myVotes).toEqual({});
   });
 });

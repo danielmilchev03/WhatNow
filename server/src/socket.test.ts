@@ -102,6 +102,29 @@ describe('socket flow', () => {
     expect(view).not.toHaveProperty('votes');
   });
 
+  it("sends everyone's progress counts after a vote", async () => {
+    const host = client();
+    const guest = client();
+    const created = nextState(host);
+    host.emit('room:create', { deckId: 'activities', name: 'Ana' });
+    const { code } = await created;
+
+    const joined = nextState(host, (r) => r.players.length === 2);
+    guest.emit('room:join', { code, name: 'Ivan' });
+    await joined;
+
+    const swiping = nextState(host, (r) => r.status === 'swiping');
+    host.emit('room:start');
+    const room = await swiping;
+
+    const hostView = nextState(host, (r) => r.progress.some((p) => p.voted === 1));
+    const guestView = nextState(guest, (r) => r.progress.some((p) => p.voted === 1));
+    host.emit('card:vote', { cardId: room.cards[0]!.id, like: true });
+    for (const view of await Promise.all([hostView, guestView])) {
+      expect(view.progress.map((p) => p.voted)).toEqual([1, 0]);
+    }
+  });
+
   it('sends error codes for bad input', async () => {
     const socket = client();
 
