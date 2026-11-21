@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { PublicRoom } from '@whatnow/shared';
 import { SwipeableCard } from '../components/SwipeableCard';
 import { useRoom } from '../room';
-import { canVote, initialVoteState, voteReducer } from '../swipe';
+import { canVote, initialVoteState, otherPlayersProgress, voteReducer } from '../swipe';
 
 export function SwipeScreen({ room }: { room: PublicRoom }) {
   const { t } = useTranslation();
@@ -21,6 +21,7 @@ export function SwipeScreen({ room }: { room: PublicRoom }) {
 
   if (!card) return null;
 
+  const others = otherPlayersProgress(room);
   const pending = !canVote(votedCardId, card.id);
 
   const voteOnce = (liked: boolean) => {
@@ -34,6 +35,24 @@ export function SwipeScreen({ room }: { room: PublicRoom }) {
       <p className="text-center text-sm text-gray-500">
         {t('swipe.progress', { current: index + 1, total: room.cards.length })}
       </p>
+      {others.length > 0 && (
+        <ul
+          aria-label={t('swipe.othersProgress')}
+          className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-gray-500"
+        >
+          {others.map((p) => (
+            <li key={p.id} className="max-w-full truncate">
+              {t('swipe.playerProgress', { name: p.name, voted: p.voted, total: p.total })}
+              {p.done && (
+                <span role="img" aria-label={t('swipe.playerDone', { name: p.name })}>
+                  {' '}
+                  ✓
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
       <SwipeableCard key={`${card.id}-${retry}`} card={card} onSwipe={voteOnce} />
       <div className="grid grid-cols-2 gap-4">
         <button

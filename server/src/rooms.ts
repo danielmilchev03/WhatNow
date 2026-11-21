@@ -7,6 +7,7 @@ import {
   type DeckOptions,
   type ErrorCode,
   type Player,
+  type PlayerProgress,
   type PublicRoom,
   type Room,
 } from '@whatnow/shared';
@@ -144,6 +145,14 @@ export function castVote(
   return ok({ room: next, newMatch });
 }
 
+/** How many current cards each player has voted on, in `players` order. Counts only, never votes. */
+export function computeProgress(room: Room): PlayerProgress[] {
+  return room.players.map((p) => ({
+    playerId: p.id,
+    voted: room.cards.filter((card) => room.votes[card.id]?.[p.id] !== undefined).length,
+  }));
+}
+
 /**
  * The room as one player is allowed to see it: other players' votes are left out.
  * Like counts are aggregates, but they would still reveal votes mid-game, so they wait for 'done'.
@@ -163,6 +172,7 @@ export function toPublicRoom(room: Room, playerId: string): PublicRoom {
     cards: room.cards,
     matches: room.matches,
     almostMatches: room.status === 'done' ? computeAlmostMatches(room) : [],
+    progress: computeProgress(room),
     selfId: playerId,
     myVotes,
   };

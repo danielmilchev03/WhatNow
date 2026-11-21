@@ -1,3 +1,5 @@
+import type { PublicRoom } from '@whatnow/shared';
+
 export type SwipeDecision = 'like' | 'nope';
 
 /** Fraction of the card width the drag must cover for a release to count as a swipe. */
@@ -61,4 +63,25 @@ export function voteReducer(state: VoteState, event: VoteEvent): VoteState {
       if (state.votedCardId === null) return state;
       return { votedCardId: null, retry: state.retry + 1 };
   }
+}
+
+export interface OtherPlayerProgress {
+  id: string;
+  name: string;
+  voted: number;
+  total: number;
+  done: boolean;
+}
+
+/** Everyone but the viewer with how many cards they have voted on; a player without an entry counts 0. */
+export function otherPlayersProgress(
+  room: Pick<PublicRoom, 'players' | 'progress' | 'selfId' | 'cards'>,
+): OtherPlayerProgress[] {
+  const total = room.cards.length;
+  return room.players
+    .filter((p) => p.id !== room.selfId)
+    .map((p) => {
+      const voted = room.progress.find((entry) => entry.playerId === p.id)?.voted ?? 0;
+      return { id: p.id, name: p.name, voted, total, done: total > 0 && voted >= total };
+    });
 }

@@ -4,6 +4,7 @@ import {
   canVote,
   flyOutDistance,
   initialVoteState,
+  otherPlayersProgress,
   releaseDecision,
   swipeDecision,
   tiltDegrees,
@@ -99,5 +100,35 @@ describe('voteReducer', () => {
 
   it('ignores a rejection when no vote is pending', () => {
     expect(voteReducer(initialVoteState, { type: 'rejected' })).toBe(initialVoteState);
+  });
+});
+
+describe('otherPlayersProgress', () => {
+  const players = [
+    { id: 'p1', name: 'Ana', isHost: true },
+    { id: 'p2', name: 'Ivan', isHost: false },
+    { id: 'p3', name: 'Mia', isHost: false },
+  ];
+  const cards = [1, 2].map((n) => ({
+    id: `c${n}`,
+    title: `c${n}`,
+    tags: [],
+    source: 'local' as const,
+  }));
+
+  it('drops the viewer, joins by id and flags finished players', () => {
+    const progress = [
+      { playerId: 'p1', voted: 1 },
+      { playerId: 'p2', voted: 2 },
+    ];
+    expect(otherPlayersProgress({ players, progress, selfId: 'p1', cards })).toEqual([
+      { id: 'p2', name: 'Ivan', voted: 2, total: 2, done: true },
+      { id: 'p3', name: 'Mia', voted: 0, total: 2, done: false },
+    ]);
+  });
+
+  it('is never done without cards', () => {
+    const result = otherPlayersProgress({ players, progress: [], selfId: 'p1', cards: [] });
+    expect(result.every((p) => !p.done)).toBe(true);
   });
 });
