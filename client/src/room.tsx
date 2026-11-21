@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { DeckId, ErrorCode, PublicRoom } from '@whatnow/shared';
+import { clearMatchIf } from './match';
 import { socket } from './socket';
 
 interface RoomContextValue {
@@ -14,7 +15,8 @@ interface RoomContextValue {
   startRoom: () => void;
   vote: (cardId: string, like: boolean) => void;
   dismissError: () => void;
-  dismissMatch: () => void;
+  /** Dismisses the overlay for `cardId` only; a newer match stays up. */
+  dismissMatch: (cardId: string) => void;
   leaveRoom: () => void;
 }
 
@@ -59,7 +61,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
       startRoom: () => socket.emit('room:start'),
       vote: (cardId, like) => socket.emit('card:vote', { cardId, like }),
       dismissError: () => setError(null),
-      dismissMatch: () => setLastMatch(null),
+      dismissMatch: (cardId) => setLastMatch((current) => clearMatchIf(current, cardId)),
       leaveRoom: () => {
         // A fresh connection means the server stops sending this tab updates for the old room.
         socket.disconnect().connect();

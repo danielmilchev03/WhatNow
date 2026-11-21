@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { PublicRoom } from '@whatnow/shared';
+import { InviteShare } from '../components/InviteShare';
 import { useRoom } from '../room';
 
 export function LobbyScreen({ room }: { room: PublicRoom }) {
@@ -14,6 +15,8 @@ export function LobbyScreen({ room }: { room: PublicRoom }) {
         <p className="font-mono text-5xl font-bold tracking-widest">{room.code}</p>
         <p className="mt-1 text-sm text-gray-500">{t(`decks.${room.deckId}`)}</p>
       </div>
+
+      <InviteShare code={room.code} />
 
       <section>
         <h2 className="mb-2 font-semibold">{t('lobby.players', { count: room.players.length })}</h2>
